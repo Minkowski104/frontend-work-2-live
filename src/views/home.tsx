@@ -1,7 +1,15 @@
+import { useEffect, useState } from "react";
 import { FaStar } from "react-icons/fa6";
+import {Link} from "react-router-dom"; 
+import { getCompanies } from "../api/company";
 
 export const HomePage = () => {
-    const comp=[{name:"facebook",rating:3},{name:"google",rating:5}]
+    const [comp, setComp] = useState([]);
+    useEffect(() => {
+        getCompanies((data) => {
+            setComp(data)
+        })
+    }, [])
     const Rating = (value:number) => (
         <div className="flex flex-row">
           {[...Array(10)].map((_, index) => (
@@ -13,14 +21,20 @@ export const HomePage = () => {
         </div>
     )
     return (
-        <div className="text-3xl text-green-800 font-bold underline h-full w-full flex flex-col items-center">
-            Home Page
+        <div className="h-full w-full flex flex-col items-center">
+            <div className="bold text-3xl bg-yellow-500 p-3 w-full flex flew-row">
+                <div>Home Page</div>
+                <Link to={"/addcompany"} className="float-right text-xl align-middle">Add Company +</Link>
+            </div>
+            
             {comp.map(element =>{ return (
-                <div className="h-24 border-4 border-black rounded w-2/3 text-left p-1 m-1">
+                <div className="h-24 border-4 border-black rounded w-2/3 text-left p-1 m-1 text-xl relative">
                     {element.name}
+                    <div className="absolute right-2 top-2">
                     {
                         Rating(element.rating)
                     }
+                    </div>
                 </div>
             )})}
         </div>
