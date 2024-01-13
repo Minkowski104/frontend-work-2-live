@@ -1,8 +1,6 @@
 import axios from 'axios';
+import { executeGet } from '../base-crud';
 
 export const getCompanies = async (callback=(function(data:any){})) => {
-    let base = 'http://127.0.0.1:8000'
-    await axios.get(base + '/').then((response) => {
-      callback(response.data)  
-    })
+  executeGet('/companies/list', callback)
 }
