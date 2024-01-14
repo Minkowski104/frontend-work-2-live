@@ -22,7 +22,7 @@ export const HomePage = () => {
     )
     return (
         <div className="h-full w-full flex flex-col items-center">
-            <div className="bold text-3xl bg-yellow-500 p-3 w-full flex flew-row">
+            <div className="bold text-3xl bg-yellow-500 p-3 w-full flex flew-row justify-between">
                 <div>Home Page</div>
                 <Link to={"/addcompany"} className="float-right text-xl align-middle">Add Company +</Link>
             </div>
