@@ -2,12 +2,18 @@ import { useEffect, useState } from "react";
 import { FaStar } from "react-icons/fa6";
 import {Link} from "react-router-dom"; 
 import { getCompanies } from "../api/company";
+import Modal from "../components/dialog";
 
+type Company = {
+    name: string;
+    rating: number;
+  };
 export const HomePage = () => {
-    const [comp, setComp] = useState([]);
+    const [comp, setComp] = useState<Company[]>([]);
+    const [logInModalOpen, setLogInModalOpen] = useState(true);
     useEffect(() => {
         getCompanies((data) => {
-            setComp(data)
+            setComp(data as Company[])
         })
     }, [])
     const Rating = (value:number) => (
@@ -21,6 +27,7 @@ export const HomePage = () => {
         </div>
     )
     return (
+        <>
         <div className="h-full w-full flex flex-col items-center">
             <div className="bold text-3xl bg-yellow-500 p-3 w-full flex flew-row justify-between">
                 <div>Home Page</div>
@@ -38,5 +45,11 @@ export const HomePage = () => {
                 </div>
             )})}
         </div>
+        <Modal open={logInModalOpen} setOpen={setLogInModalOpen}>
+            <div>
+                Not Yet Logged In
+            </div>
+        </Modal>
+        </>
     )
 }
