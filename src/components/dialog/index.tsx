@@ -7,7 +7,7 @@ interface ModalProps {
   children: ReactNode;
 }
 
-const Modal: React.FC<ModalProps> = ({ open, setOpen, children }) => {
+export const Modal: React.FC<ModalProps> = ({ open, setOpen, children }) => {
   const handleClose = () => {
     setOpen(false);
   };
@@ -27,5 +27,3 @@ const Modal: React.FC<ModalProps> = ({ open, setOpen, children }) => {
     </div>
   );
 };
-
-export default Modal;

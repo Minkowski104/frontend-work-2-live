@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { FaStar } from "react-icons/fa6";
 import {Link} from "react-router-dom"; 
 import { getCompanies } from "../api/company";
-import Modal from "../components/dialog";
+import { Modal } from "../components/dialog";
 
 type Company = {
     name: string;

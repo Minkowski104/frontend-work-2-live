@@ -6,5 +6,5 @@ export const getCompanies = async (callback=(function(data:any){})) => {
 }
 
 export const addCompany = async (data:any, callback=(function(data:any){})) => {
-  executePost('/companies/addCompany', data, callback)
+  executePost('/companies/create', data, callback)
 }

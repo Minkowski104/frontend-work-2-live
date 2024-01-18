@@ -1,10 +1,21 @@
 import { useState } from "react";
 import { addCompany } from "../api/company";
+import { useNavigate } from "react-router-dom";
 
 export const AddCompany = () => {
-    const [comp, setComp] = useState({'name':"", 'wage':0, 'hours':0, 'rating':0});
+    const [comp, setComp] = useState({
+        name: '',
+        wage: 0,
+        hours: 0,
+        rating: 0,
+        description: ''
+    })
+    const navigate = useNavigate();
     const AddCompany = () => {
-        addCompany(comp)
+        addCompany(comp).then(()=>{
+
+            navigate('/home')
+        })
     }
 
     return (
