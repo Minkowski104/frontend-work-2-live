@@ -1,15 +1,18 @@
 import { useEffect, useState } from "react";
 import { FaStar } from "react-icons/fa6";
-import {Link} from "react-router-dom"; 
+import { AiFillHome } from "react-icons/ai";
+import {Link, useNavigate} from "react-router-dom"; 
 import { getCompanies } from "../api/company";
 import { Modal } from "../components/dialog";
 
 type Company = {
     name: string;
     rating: number;
+    description: string;
   };
 export const HomePage = () => {
     const [comp, setComp] = useState<Company[]>([]);
+    const navigate = useNavigate();
     const [logInModalOpen, setLogInModalOpen] = useState(true);
     useEffect(() => {
         getCompanies((data) => {
@@ -29,19 +32,20 @@ export const HomePage = () => {
     return (
         <>
         <div className="h-full w-full flex flex-col items-center">
-            <div className="bold text-3xl bg-yellow-500 p-3 w-full flex flew-row justify-between">
+            <div className="bold text-3xl bg-[#b2e05b] p-3 w-full flex flew-row justify-between">
                 <div>Home Page</div>
-                <Link to={"/addcompany"} className="float-right text-xl align-middle">Add Company +</Link>
+                <Link to={"/addcompany"} className="float-right text-xl align-middle text-[#222222] decoration-none hover:text-[#328336]">Add Company +</Link>
             </div>
             
-            {comp.map(element =>{ return (
-                <div className="h-24 border-4 border-black rounded w-2/3 text-left p-1 m-1 text-xl relative">
-                    {element.name}
-                    <div className="absolute right-2 top-2">
+            {comp.map((element) =>{ return (
+                <div className="h-36 border-4 border-black rounded w-2/3 text-left p-1 m-1 text-xl relative font-serif">
+                    <div className="text-3xl font-sans">{element.name}</div>
+                    <div className="absolute right-2 top-2 text-2xl">
                     {
                         Rating(element.rating)
                     }
                     </div>
+                    <div>{element.description}</div>
                 </div>
             )})}
         </div>
@@ -49,6 +53,7 @@ export const HomePage = () => {
             <div>
                 Not Yet Logged In
             </div>
+            <button onClick={() => navigate('/newuser')}>Log In</button>
         </Modal>
         </>
     )

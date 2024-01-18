@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { addCompany } from "../api/company";
 import { useNavigate } from "react-router-dom";
+import { Modal } from "../components/dialog";
 
 export const AddCompany = () => {
     const [comp, setComp] = useState({
@@ -10,18 +11,27 @@ export const AddCompany = () => {
         rating: 0,
         description: ''
     })
+    const [ModalOpen, setModalOpen] = useState(false);
     const navigate = useNavigate();
     const AddCompany = () => {
-        addCompany(comp).then(()=>{
+        if(comp.name)
+        {
+            addCompany(comp).then(()=>{
 
-            navigate('/home')
-        })
+                navigate('/home')
+            })
+        }
+        else
+        {
+        // show fail modal
+        }
+
     }
 
     return (
         <>
         <div className="flex flex-col items-center">
-            <div className="bg-[#64cc4f] p-3 top-0 w-full rounded">
+            <div className="bg-[#b2e05b] p-3 top-0 w-full rounded">
                 <div className="bold text-3xl">Add Company</div>
             </div>
             <div className="flex flex-col w-2/4">
@@ -43,10 +53,10 @@ export const AddCompany = () => {
                 </div>
                 <div className="w-full h-full text-left p-2 flex flex-col mx-2" >
                     <div>Company Description </div>
-                    <textarea className="border-2 border-black rounded w-1/2 h-full p-1 my-1" />
+                    <textarea className="border-2 border-black rounded w-1/2 h-full p-1 my-1" onChange={(e) => setComp({...comp, 'description':e.target.value})}/>
                 </div>
                 <div className="w-full h-full text-left p-2 flex flex-col mx-2" >
-                    <div>Your Experience with Company </div>
+                    <div>Review of Company </div>
                     <textarea className="border-2 border-black rounded w-1/2 h-full p-1 my-1" />
                 </div>
                 <div>
