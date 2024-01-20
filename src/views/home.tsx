@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { FaStar } from "react-icons/fa6";
-import { AiFillHome } from "react-icons/ai";
 import {Link, useNavigate} from "react-router-dom"; 
 import { getCompanies } from "../api/company";
 import { Modal } from "../components/dialog";
