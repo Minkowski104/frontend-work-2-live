@@ -6,6 +6,7 @@ import { AddCompany } from './views/add-company';
 import { NavBar } from './components/navbar';
 import { NewUser } from './views/new-user';
 import { ProfilePage } from './views/user-profile';
+import { CompanyProfile } from './views/company-profile';
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
           <Route path='/addcompany' element={<AddCompany />} />
           <Route path='/newuser' element={<NewUser />} />
           <Route path='/profile' element={<ProfilePage />} />
+          <Route path='/company' element={<CompanyProfile/> }/>
       </Routes>
     </BrowserRouter>
     </>
