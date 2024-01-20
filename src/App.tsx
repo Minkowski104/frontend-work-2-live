@@ -5,7 +5,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AddCompany } from './views/add-company';
 import { NavBar } from './components/navbar';
 import { NewUser } from './views/new-user';
-import { ProfilePage } from './views/profile-page';
+import { ProfilePage } from './views/user-profile';
 
 
 function App() {
