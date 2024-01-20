@@ -3,7 +3,8 @@ import { getCompanies } from "../api/company";
 import { addUser } from "../api/user";
 
 type Company = {
-    name: string
+    name: string,
+    uuid: string
 }
 export const NewUser = () => {
     const [comp, setComp] = useState<Company[]>([]);
@@ -12,7 +13,7 @@ export const NewUser = () => {
         'wage':0, 
         'hours':0,
         'company':'',
-        'password':""
+        'password':"",
     });
     const [repassword, setRepassword] = useState('');
     useEffect(() => {
@@ -54,16 +55,16 @@ export const NewUser = () => {
                 </div>
                 <div className="w-full h-full text-left p-2 flex flex-col mx-2" >
                     <div>Select Your Company </div>
-                    <select className="bg-white border-2 border-black rounded w-1/3 p-1 my-2" onChange={(e) => setUser({...user, 'company':e.target.value})}>
-                        <option></option>
+                    <input list="companies" className="bg-white border-2 border-black rounded w-1/3 p-1 my-2" onChange={(e) => setUser({...user, 'company':e.target.value})}/>
+                        <datalist id = "companies">
                         {
                             comp.map((element) => {
                                 return (
-                                    <option>{element.name}</option>
+                                    <option value={element.uuid}>{element.name}</option>
                                 )
                             })
                         }
-                    </select>
+                        </datalist>
                 </div>
                 <div className="w-full h-full text-left p-2 flex flex-col mx-2" >
                     <div>Your Experience with Company </div>
@@ -78,7 +79,7 @@ export const NewUser = () => {
                     <input type="password" className="border-2 border-black rounded w-1/3 p-1" onChange={(e) => setRepassword(e.target.value)}/>
                 </div>
                 <div>
-                    <button className="border-2 border-black rounded w-1/3 p-1 my-1" onClick={AddUser}>Submit</button>
+                    <button className="btn-primary" onClick={AddUser}>Submit</button>
                 </div>
             </div>
         </div>

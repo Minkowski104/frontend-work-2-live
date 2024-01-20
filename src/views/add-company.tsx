@@ -60,7 +60,7 @@ export const AddCompany = () => {
                     <textarea className="border-2 border-black rounded w-1/2 h-full p-1 my-1" />
                 </div>
                 <div>
-                    <button className="border-2 border-black rounded w-1/3 p-1 my-1" onClick={AddCompany}>Submit</button>
+                    <button className="btn-primary" onClick={AddCompany}>Submit</button>
                 </div>
             </div>
         </div>

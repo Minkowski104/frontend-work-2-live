@@ -38,8 +38,8 @@ export const HomePage = () => {
             </div>
             
             {comp.map((element) =>{ return (
-                <div className="h-36 border-4 border-black rounded w-2/3 text-left p-1 m-1 text-xl relative font-serif">
-                    <div className="text-3xl font-sans">{element.name}</div>
+                <div className="h-36 border-4 border rounded w-2/3 text-left p-1 m-1 text-xl relative font-serif">
+                    <div className="text-xl font-sans">{element.name}</div>
                     <div className="absolute right-2 top-2 text-2xl">
                     {
                         Rating(element.rating)
@@ -53,7 +53,7 @@ export const HomePage = () => {
             <div>
                 Not Yet Logged In
             </div>
-            <button onClick={() => navigate('/newuser')}>Log In</button>
+            <button className="btn-primary" onClick={() => navigate('/newuser')}>Log In</button>
         </Modal>
         </>
     )
