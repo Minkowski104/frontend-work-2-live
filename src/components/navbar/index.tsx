@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react"
 import { BsPerson } from "react-icons/bs"
 import { CgLogOff } from "react-icons/cg"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 export const NavBar = () => {
 
@@ -15,7 +15,7 @@ export const NavBar = () => {
             }
         });
     }, []);
-
+    
     return (
         <div className="bg-[#b2e05b] p-3 top-0 w-full rounded flex flex-row justify-between">
             <Link to={"/home"} className="text-[#222222] decoration-none hover:text-[#328336]">Work 2 Live </Link>
@@ -28,10 +28,11 @@ export const NavBar = () => {
 }
 
 const UserDropDown = () => {
+    const navigate = useNavigate();
     return(
     <div className="absolute flex flex-col gap-2 right-0 rounded-md bg-white p-3 ">
-    <div className="text-nowrap ">My Profile</div>
-    <div>Logout</div>
+    <div className="text-nowrap cursor-pointer" onClick={() => {navigate('/profile')}}>My Profile</div>
+    <div className="text-nowrap cursor-pointer">Logout</div>
     </div>)
 
 }
