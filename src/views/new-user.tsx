@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react";
 import { getCompanies } from "../api/company";
 import { addUser } from "../api/user";
+import { Company } from "../interfaces";
 
-type Company = {
-    name: string,
-    uuid: string
-}
+
 export const NewUser = () => {
     const [comp, setComp] = useState<Company[]>([]);
     const [user, setUser] = useState({
