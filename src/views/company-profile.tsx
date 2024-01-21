@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { findCompany } from "../api/company";
-import { Company } from "../interfaces";
+import { Company } from "../interfaces/Company";
 
 export const CompanyProfile = () => {
     const {id} = useParams();

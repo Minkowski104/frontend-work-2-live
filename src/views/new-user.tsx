@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { getCompanies } from "../api/company";
 import { addUser } from "../api/user";
-import { Company } from "../interfaces";
+import { Company } from "../interfaces/Company";
 
 
 export const NewUser = () => {

@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import { getCompanies } from "../api/company";
-import { addUser } from "../api/user";
+
 
 export const ProfilePage = () => {
     // useEffect(() => {

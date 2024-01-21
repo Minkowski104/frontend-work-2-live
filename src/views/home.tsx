@@ -3,7 +3,7 @@ import { FaStar } from "react-icons/fa6";
 import {Link, useNavigate} from "react-router-dom"; 
 import { getCompanies } from "../api/company";
 import { Modal } from "../components/dialog";
-import { Company } from "../interfaces";
+import { Company } from "../interfaces/Company";
 import useDebounce from "../helper/debounce";
 
 
