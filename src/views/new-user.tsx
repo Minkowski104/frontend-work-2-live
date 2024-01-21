@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { getCompanies } from "../api/company";
-import { addUser } from "../api/user";
+import { addUser, signUp } from "../api/user";
 import { Company } from "../interfaces/Company";
+import { GoogleLogin } from "@react-oauth/google";
 
 
 export const NewUser = () => {
@@ -31,7 +32,17 @@ export const NewUser = () => {
         }
 
     }
-
+    const responseMessage = (response:any) => {
+        console.log(response);
+        let data ={
+            'google_id':response.clientId,
+            'google_token':response.credential
+        }
+        signUp(data).then(()=>{})
+    };
+    const errorMessage = (error:any) => {
+        console.log(error);
+    };
     return (
         <>
         <div className="flex flex-col items-center">
@@ -79,6 +90,7 @@ export const NewUser = () => {
                 <div>
                     <button className="btn-primary" onClick={AddUser}>Submit</button>
                 </div>
+                <GoogleLogin onSuccess={responseMessage} onError={errorMessage} />
             </div>
         </div>
         </>
