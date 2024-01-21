@@ -25,6 +25,11 @@ export const HomePage = () => {
           ))}
         </div>
     )
+    const Search = (keyword:string) => (
+        getCompanies((data) => {
+            setComp(data as Company[])
+        },keyword)
+    )
     return (
         <>
         <div className="h-full w-full flex flex-col items-center">
@@ -32,7 +37,7 @@ export const HomePage = () => {
                 <div>Home Page</div>
                 <Link to={"/addcompany"} className="float-right text-xl align-middle text-[#222222] decoration-none hover:text-[#328336]">Add Company +</Link>
             </div>
-            
+            <input type="text" className="border-2 border-black rounded w-1/3 p-1" onChange={(e) => Search(e.target.value)}/>
             {comp.map((element) =>{ return (
                 <div 
                     className="h-36 cursor-pointer border-4 border rounded w-2/3 text-left p-1 m-1 text-xl relative font-serif"
