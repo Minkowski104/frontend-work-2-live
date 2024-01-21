@@ -4,3 +4,5 @@ export type Company = {
     description: string;
     uuid: string;
   };
+
+  
