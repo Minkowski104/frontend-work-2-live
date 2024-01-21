@@ -3,12 +3,9 @@ import { FaStar } from "react-icons/fa6";
 import {Link, useNavigate} from "react-router-dom"; 
 import { getCompanies } from "../api/company";
 import { Modal } from "../components/dialog";
+import { Company } from "../interfaces";
 
-type Company = {
-    name: string;
-    rating: number;
-    description: string;
-  };
+
 export const HomePage = () => {
     const [comp, setComp] = useState<Company[]>([]);
     const navigate = useNavigate();
@@ -37,7 +34,10 @@ export const HomePage = () => {
             </div>
             
             {comp.map((element) =>{ return (
-                <div className="h-36 border-4 border rounded w-2/3 text-left p-1 m-1 text-xl relative font-serif">
+                <div 
+                    className="h-36 cursor-pointer border-4 border rounded w-2/3 text-left p-1 m-1 text-xl relative font-serif"
+                    onClick={()=>{navigate(`/company/${element.uuid}`)}}
+                >
                     <div className="text-xl font-sans">{element.name}</div>
                     <div className="absolute right-2 top-2 text-2xl">
                     {

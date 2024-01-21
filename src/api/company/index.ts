@@ -8,3 +8,7 @@ export const getCompanies = async (callback=(function(data:any){})) => {
 export const addCompany = async (data:any, callback=(function(data:any){})) => {
   executePost('/companies/create', data, callback)
 }
+
+export const findCompany = async (uuid:string, callback=(function(data:any){})) => {
+  executeGet("/companies/"+uuid, callback)
+}
