@@ -3,6 +3,7 @@ export type Company = {
     rating: number;
     description: string;
     uuid: string;
+    wage: number;
   };
 
   
