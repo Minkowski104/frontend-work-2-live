@@ -50,7 +50,11 @@ const UserDropDown = () => {
     return(
     <div className="absolute flex flex-col gap-2 right-0 rounded-md bg-white p-3 ">
     <div className="text-nowrap cursor-pointer" onClick={() => {navigate('/profile')}}>My Profile</div>
-    <div className="text-nowrap cursor-pointer" onClick={logout}>Logout</div>
+    {
+        localStorage.getItem('token') !== null
+        ?<div className="text-nowrap cursor-pointer" onClick={logout}>Logout</div>
+        :<div className="text-nowrap cursor-pointer" onClick={() => navigate('/login')}>Login</div>
+    }
     </div>)
 
 }

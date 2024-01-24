@@ -4,6 +4,7 @@ export type User = {
     hours:number;
     company: string;
     uuid: string;
+    email: string;
   };
 
   

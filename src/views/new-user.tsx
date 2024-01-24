@@ -25,12 +25,11 @@ export const NewUser = () => {
     const AddUser = () => {
         if(user.name&&user.password===repassword&&user.password)
         {
-            // add user to db
             addUser(user).then(()=>{})
         }
         else
         {
-        // show fail modal
+            toast.error("Something went wrong");
         }
 
     }
@@ -100,10 +99,12 @@ export const NewUser = () => {
                 <div>
                     <button className="btn-primary" onClick={AddUser}>Submit</button>
                 </div>
-                <GoogleLogin onSuccess={responseMessage} onError={errorMessage}/>
-                {alreadyExists && <div className="text-red-500">User Already Exists</div>}
-                <div>
-                    Already have an account? <a href="/login">Login</a>
+                <div className="flex flex-col w-full items-center mt-12 gap-4">
+                    <GoogleLogin onSuccess={responseMessage} onError={errorMessage}/>
+                    {alreadyExists && <div className="text-red-500">User Already Exists</div>}
+                    <div>
+                        Already have an account? <a href="/login">Login</a>
+                    </div>
                 </div>
             </div>
         </div>

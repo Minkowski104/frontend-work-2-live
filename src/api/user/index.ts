@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { executePost } from '../base-crud';
+import { executeGet, executePost } from '../base-crud';
 
 
 export const addUser = async (data:any, callback=(function(data:any){})) => {
@@ -14,4 +14,8 @@ export const login= (data:any, callback=(function(data:any){})) => {
 
 export const signUp = async(data:any, callback=(function(data:any){})) => {
     executePost('/users/sign-up', data, callback)
+}
+
+export const findUser = async (token:string, callback=(function(data:any){})) => {
+    executeGet('/users/'+token, callback)
 }
