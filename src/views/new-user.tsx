@@ -3,6 +3,7 @@ import { getCompanies } from "../api/company";
 import { addUser, signUp } from "../api/user";
 import { Company } from "../interfaces/Company";
 import { GoogleLogin } from "@react-oauth/google";
+import toast from 'react-hot-toast';
 
 
 export const NewUser = () => {
@@ -15,6 +16,7 @@ export const NewUser = () => {
         'password':"",
     });
     const [repassword, setRepassword] = useState('');
+    const [alreadyExists, setAlreadyExists] = useState(false);
     useEffect(() => {
         getCompanies((data) => {
             setComp(data as Company[])
@@ -38,7 +40,15 @@ export const NewUser = () => {
             'google_id':response.clientId,
             'google_token':response.credential
         }
-        signUp(data).then(()=>{})
+        signUp(data, (response:any)=>{
+            if(response?.success === false&& response?.error === "user already exists")
+            {
+                toast.error("User already exists");
+                setAlreadyExists(true);
+            }else if(response?.success === true){
+                toast.success("User created successfully. Redirecting to login");
+            }
+        })
     };
     const errorMessage = (error:any) => {
         console.log(error);
@@ -90,7 +100,11 @@ export const NewUser = () => {
                 <div>
                     <button className="btn-primary" onClick={AddUser}>Submit</button>
                 </div>
-                <GoogleLogin onSuccess={responseMessage} onError={errorMessage} />
+                <GoogleLogin onSuccess={responseMessage} onError={errorMessage}/>
+                {alreadyExists && <div className="text-red-500">User Already Exists</div>}
+                <div>
+                    Already have an account? <a href="/login">Login</a>
+                </div>
             </div>
         </div>
         </>

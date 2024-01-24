@@ -7,7 +7,7 @@ export const addUser = async (data:any, callback=(function(data:any){})) => {
     executePost('/users/create', data, callback)
 }
 
-export const loginIn = (data:any, callback=(function(data:any){})) => {
+export const login= (data:any, callback=(function(data:any){})) => {
     executePost('/users/login', data, callback)
 }
 

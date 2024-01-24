@@ -10,7 +10,7 @@ import useDebounce from "../helper/debounce";
 export const HomePage = () => {
     const [comp, setComp] = useState<Company[]>([]);
     const navigate = useNavigate();
-    const [logInModalOpen, setLogInModalOpen] = useState(true);
+    const [logInModalOpen, setLogInModalOpen] = useState(false);
     const [searchPhrase, setSearchPhrase] = useState('');
     const debouncedSearch = useDebounce(searchPhrase, 1000);
 
@@ -18,6 +18,9 @@ export const HomePage = () => {
         getCompanies((data) => {
             setComp(data as Company[])
         })
+        if(localStorage.getItem('token')?.length === 0 || localStorage.getItem('token') === null){
+            setLogInModalOpen(true);
+        }
     }, [])
 
     useEffect(() => {
@@ -65,7 +68,7 @@ export const HomePage = () => {
             <div>
                 Not Yet Logged In
             </div>
-            <button className="btn-primary" onClick={() => navigate('/newuser')}>Log In</button>
+            <button className="btn-primary" onClick={() => navigate('/login')}>Log In</button>
         </Modal>
         </>
     )
