@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { User } from "../interfaces/User";
-import { findUser } from "../api/user";
+import { findUser, updateUser } from "../api/user";
 import { FaEdit } from "react-icons/fa";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
@@ -12,21 +12,26 @@ export const ProfilePage = () => {
     const navigate = useNavigate();
     useEffect(() => {
         const token=localStorage.getItem('token');
-        if (token)
-        {
-            findUser(token,((data:any) => {
-            setUser(data as User);
-           })
-        )}
-        else
+        if (!token)
         {
             toast.error("Please Login to view profile\n redirecting to login");
             setTimeout(() => {
-                navigate('/login')}, 1000);
+            navigate('/login')}, 1000);
+            return
         }
+        findUser(token,((data:any) => {
+            setUser(data as User);
+           })
+        )
     }, [])
     const UpdateUser = () => {
         //update user in db
+        const token=localStorage.getItem('token');
+        if (!token) return;
+        console.log(user)
+        updateUser(token,user).then(() => {
+            
+        });
         setEdit(!edit);
     }
     return (
