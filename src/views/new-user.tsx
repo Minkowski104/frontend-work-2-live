@@ -4,6 +4,7 @@ import { addUser, signUp } from "../api/user";
 import { Company } from "../interfaces/Company";
 import { GoogleLogin } from "@react-oauth/google";
 import toast from 'react-hot-toast';
+import { SearchList } from "../components/searchlist";
 
 
 export const NewUser = () => {
@@ -73,16 +74,7 @@ export const NewUser = () => {
                 </div>
                 <div className="w-full h-full text-left p-2 flex flex-col mx-2" >
                     <div>Select Your Company </div>
-                    <input list="companies" className="bg-white border-2 border-black rounded w-1/3 p-1 my-2" onChange={(e) => setUser({...user, 'company':e.target.value})}/>
-                        <datalist id = "companies">
-                        {
-                            comp.map((element) => {
-                                return (
-                                    <option value={element.uuid}>{element.name}</option>
-                                )
-                            })
-                        }
-                        </datalist>
+                    <SearchList items={comp} classes="bg-white border-2 border-black rounded w-1/3 p-1 my-2" onChange={(item) => setUser({...user, 'company':item.uuid})}></SearchList>
                 </div>
                 <div className="w-full h-full text-left p-2 flex flex-col mx-2" >
                     <div>Your Experience with Company </div>

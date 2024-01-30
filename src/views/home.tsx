@@ -26,8 +26,8 @@ export const HomePage = () => {
     useEffect(() => {
         getCompanies((data) => {
             setComp(data as Company[])
-        },debouncedSearch)
-    }, [debouncedSearch])
+        })
+    }, [])
 
 
     const Rating = (value:number) => (
@@ -49,7 +49,9 @@ export const HomePage = () => {
                 <Link to={"/addcompany"} className="float-right text-xl align-middle text-[#222222] decoration-none hover:text-[#328336]">Add Company +</Link>
             </div>
             <input type="text" className="border-2 border-black rounded w-1/3 p-1" onChange={(e) => setSearchPhrase(e.target.value)}/>
-            {comp.map((element) =>{ return (
+            {comp.map((element) =>{ 
+                if(element.name.toLowerCase().includes(searchPhrase.toLowerCase()))  {
+                return (
                 <div 
                     className="h-36 cursor-pointer border-4 border rounded w-2/3 text-left p-1 m-1 text-xl relative font-serif"
                     onClick={()=>{navigate(`/company/${element.uuid}`)}}
@@ -62,7 +64,7 @@ export const HomePage = () => {
                     </div>
                     <div>{element.description}</div>
                 </div>
-            )})}
+            )}})}
         </div>
         <Modal open={logInModalOpen} setOpen={setLogInModalOpen}>
             <div>

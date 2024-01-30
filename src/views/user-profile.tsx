@@ -4,17 +4,19 @@ import { findUser, updateUser } from "../api/user";
 import { FaEdit } from "react-icons/fa";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { Modal } from "../components/dialog";
 
 
 export const ProfilePage = () => {
     const [user, setUser] = useState<User>();
     const [edit, setEdit] = useState<boolean>(false);
+    const [logInModalOpen, setLogInModalOpen] = useState(false);
     const navigate = useNavigate();
     useEffect(() => {
         const token=localStorage.getItem('token');
         if (!token)
         {
-            toast.error("Please Login to view profile\n redirecting to login");
+            setLogInModalOpen(true);
             setTimeout(() => {
             navigate('/login')}, 1000);
             return
@@ -71,6 +73,12 @@ export const ProfilePage = () => {
 
             </div>
         </div>
+        <Modal open={logInModalOpen} setOpen={setLogInModalOpen}>
+            <div className="text-center p-1/3">
+            Please Login to view profile.<br/>
+            redirecting to login
+            </div>
+        </Modal>
         </>
     )
 }
