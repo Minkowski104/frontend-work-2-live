@@ -53,7 +53,7 @@ export const HomePage = () => {
                 if(element.name.toLowerCase().includes(searchPhrase.toLowerCase()))  {
                 return (
                 <div 
-                    className="h-36 cursor-pointer border-4 border rounded w-2/3 text-left p-1 m-1 text-xl relative font-serif"
+                    className="h-36 cursor-pointer border-4 border rounded w-2/3 text-left p-1 m-1 text-xl relative font-serif hover:bg-gray-200"
                     onClick={()=>{navigate(`/company/${element.uuid}`)}}
                 >
                     <div className="text-xl font-sans">{element.name}</div>
