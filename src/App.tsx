@@ -9,6 +9,7 @@ import { ProfilePage } from './views/user-profile';
 import { CompanyProfile } from './views/company-profile';
 import { Toaster } from 'react-hot-toast';
 import { LoginUser } from './views/login';
+import { PositionProfile } from './views/position-profile';
 
 function App() {
 
@@ -24,6 +25,7 @@ function App() {
           <Route path='/profile' element={<ProfilePage />} />
           <Route path='/company/:id' element={<CompanyProfile/> }/>
           <Route path='/login' element={<LoginUser />} />
+          <Route path='/position/:id' element={<PositionProfile/> }/>
       </Routes>
     </BrowserRouter>
     </>
