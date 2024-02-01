@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { findCompany } from "../api/company";
+import { findCompany, getCompanySummary } from "../api/company";
 import { Company } from "../interfaces/Company";
 import { getPositions } from "../api/positions";
 import { Position } from "../interfaces/Position";
 import { WorkRecord } from "../interfaces/WorkRecord";
 import { v4 as uuidv4 } from "uuid";
-import { addWorkRecord } from "../api/work-record";
+import { addWorkRecord, listWorkRecordsByCompany } from "../api/work-record";
+
+
 export const CompanyProfile = () => {
     const {id} = useParams();
     const [company, setCompany] = useState<Company>({
@@ -28,14 +30,23 @@ export const CompanyProfile = () => {
         end_date: "",
         position: "",
     })
+    const [companySummary, setCompanySummary] = useState<CompanyWorkSummary>()
+    const [companyWorkRecords, setCompanyWorkRecords] = useState<[WorkRecord]>();
     useEffect(() => {
-        if(id)
-        findCompany(id, (data)=>{
-            setCompany(data)
-        })
-        getPositions((data)=>{
-            setPositions(data)
-        })
+        if(id){
+            findCompany(id, (data)=>{
+                setCompany(data)
+            })
+            getPositions((data)=>{
+                setPositions(data)
+            })
+            listWorkRecordsByCompany(id, (data)=>{
+                setCompanyWorkRecords(data)
+            })
+            getCompanySummary(id, (data)=>{
+                setCompanySummary(data)
+            })
+        }
     },[id])
 
     const createWorkRecord =()=> {
@@ -73,13 +84,44 @@ export const CompanyProfile = () => {
                     <input value={company.description} className="border-2 border-black rounded w-1/3 p-1" disabled/>
                 </div>
             </div>
+            <div className="my-4 text-2xl font-bold">Company Summary</div>
+            <div className="flex flex-row gap-4 mb-4 border-2 border-gray p-2 rounded-md">
+                <div className="flex flex-col">
+                    <div className="font-bold">Average Wage</div>
+                    <div>{companySummary?.average_wage}</div>
+                </div>
+                <div className="flex flex-col">
+                    <div className="font-bold">Average Hours</div>
+                    <div>{companySummary?.average_hours}</div>
+                </div>
+                <div className="flex flex-col">
+                    <div className="font-bold">Number of Work Records</div>
+                    <div>{companySummary?.total_work_records}</div>
+                </div>
+                <div className="flex flex-col">
+                    <div className="font-bold">Positions offered</div>
+                    {companySummary?.positions_offered?.map((element)=>{
+                        return <div>{element}</div>
+                    })}
+
+                </div>
+            </div>
+            <div>Company Records</div>
+                {companyWorkRecords?.map((element)=>{
+                    return(
+                    <div>
+                        <div>{element.position}</div>
+                        <div>{element.wage}</div>
+                        <div>{element.hours}</div>
+                    </div>)
+                })}
             {!showAddWorkRecord?<button className="text-white bg-[#328336] p-2 rounded" onClick={() => setShowAddWorkRecord(!showAddWorkRecord)}>Add Work record</button>
                 :
                 <>
                 <div className="flex flex-row gap-2">
                     <select onChange={(e)=>{setNewWorkRecordBuffer({...newWorkRecordBuffer, position:e.target.value})}}>
                         {positions?.map((element)=>{
-                            return <option value={element?.uuid}>{element.name}</option>
+                            return <option value={element.uuid}>{element.name}</option>
                         })}
                     </select>
 

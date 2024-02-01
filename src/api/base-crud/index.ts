@@ -18,6 +18,12 @@ export const executeGet = async (url:string, callback=(function(data:any){})) =>
     })
 }
 
+export const executeGetWithParams = async (url:string, params:any, callback=(function(data:any){})) => {
+    await axios.get(base + url, {params}).then((response) => {
+      callback(response.data)  
+    })
+}
+
 export const executePut = async (url:string, data:any, callback=(function(data:any){})) => {
     await axios.put(base + url, data).then((response) => {
       callback(response.data)
