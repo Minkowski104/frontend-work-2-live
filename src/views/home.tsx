@@ -21,7 +21,7 @@ export const HomePage = () => {
         if(localStorage.getItem('token')?.length === 0 || localStorage.getItem('token') === null){
             setLogInModalOpen(true);
         }
-    }, [])
+    }, [debouncedSearch])
 
     useEffect(() => {
         getCompanies((data) => {

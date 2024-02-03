@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { addCompany } from "../api/company";
 import { useNavigate } from "react-router-dom";
-import { Modal } from "../components/dialog";
 
 export const AddCompany = () => {
     const [comp, setComp] = useState({
@@ -11,7 +10,6 @@ export const AddCompany = () => {
         rating: 0,
         description: ''
     })
-    const [ModalOpen, setModalOpen] = useState(false);
     const navigate = useNavigate();
     const AddCompany = () => {
         if(comp.name)

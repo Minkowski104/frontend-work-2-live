@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { User } from "../interfaces/User";
 import { findUser, updateUser } from "../api/user";
 import { FaEdit } from "react-icons/fa";
-import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { Modal } from "../components/dialog";
 

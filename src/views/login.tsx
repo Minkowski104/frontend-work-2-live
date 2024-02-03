@@ -28,7 +28,7 @@ export const LoginUser = () => {
             }
         })
     };
-    const errorMessage = (error:any) => {
+    const errorMessage = (error?:any) => {
         console.log(error);
     };
     return (

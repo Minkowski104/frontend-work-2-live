@@ -1,7 +1,6 @@
-import axios from 'axios';
-import { executeGet, executePost } from '../base-crud';
+import { executePost } from '../base-crud';
 
-export const listWorkRecordsByCompany = async (companyUuid:string,callback=(function(data:any){}),keyword="") => {
+export const listWorkRecordsByCompany = async (companyUuid:string,callback?:(data: any) => void) => {
   let request = {
     "token": localStorage.getItem('token'),
     "filterKey":"company",
@@ -10,11 +9,11 @@ export const listWorkRecordsByCompany = async (companyUuid:string,callback=(func
   executePost('/work-records/list', request, callback)
 }
 
-export const addWorkRecord = async (data:any, callback=(function(data:any){})) => {
+export const addWorkRecord = async (data:any, callback?:(data: any) => void) => {
   executePost('/work-records/create', data, callback)
 }
 
-export const listWorkRecordsByPosition = async (positionUuid:string,callback=(function(data:any){}),keyword="") => {
+export const listWorkRecordsByPosition = async (positionUuid:string,callback?:(data: any) => void) => {
   let request = {
     "token": localStorage.getItem('token'),
     "filterKey":"position",
