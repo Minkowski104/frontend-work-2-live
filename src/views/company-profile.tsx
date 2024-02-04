@@ -8,6 +8,8 @@ import { WorkRecord } from "../interfaces/WorkRecord";
 import { v4 as uuidv4 } from "uuid";
 import { addWorkRecord, listWorkRecordsByCompany } from "../api/work-record";
 import { SearchList } from "../components/searchlist";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 
 export const CompanyProfile = () => {
@@ -19,6 +21,7 @@ export const CompanyProfile = () => {
         uuid: "",
         wage: 0,
     });
+    const [loadingCompany, setLoadingCompany] = useState(true);
     const navigate = useNavigate();
     const [positions, setPositions] = useState<[Position]>();
     const [showAddWorkRecord, setShowAddWorkRecord] = useState(false);
@@ -33,11 +36,13 @@ export const CompanyProfile = () => {
         position: "",
     })
     const [companySummary, setCompanySummary] = useState<CompanyWorkSummary>()
+    const [loadingCompanySummary, setLoadingCompanySummary] = useState(true)
     const [companyWorkRecords, setCompanyWorkRecords] = useState<[WorkRecord]>();
     useEffect(() => {
         if(id){
             findCompany(id, (data)=>{
                 setCompany(data)
+                setLoadingCompany(false)
             })
             getPositions((data)=>{
                 setPositions(data)
@@ -47,6 +52,7 @@ export const CompanyProfile = () => {
             })
             getCompanySummary(id, (data)=>{
                 setCompanySummary(data)
+                setLoadingCompanySummary(false)
             })
         }
     },[id])
@@ -73,13 +79,15 @@ export const CompanyProfile = () => {
     return (
         <>
         <div className="flex flex-col items-center">
-            <div className="bg-[#b2e05b] p-3 top-0 w-full rounded">
+            <div className="bg-w2l-green p-3 top-0 w-full rounded">
                 <div className="bold text-3xl">{}</div>
             </div>
             <div className="flex flex-col w-2/4">
                 <div className="w-full h-full items-left p-2 m-2 flex flex-row justify-between" >
                     <div>Name </div>
-                    <input value={company.name} className="border-2 border-black rounded w-1/3 p-1" disabled/>
+                    <div className="w-1/3 border-2 border-gray-200 rounded text-base">
+                    {loadingCompany? <Skeleton/>:<div>{company.name}</div>}
+                    </div>
                 </div>
                 <div className="w-full h-full items-center p-2 m-2 flex flex-row justify-between" >
                     <div>Description </div>
@@ -87,7 +95,13 @@ export const CompanyProfile = () => {
                 </div>
             </div>
             <div className="my-4 text-2xl font-bold">Company Summary</div>
-            <div className="flex flex-row gap-4 mb-4 border-2 border-gray p-2 rounded-md">
+            {loadingCompanySummary? 
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-900">
+
+            </div>
+            :
+            <>
+                <div className="flex flex-row gap-4 mb-4 border-2 border-gray p-2 rounded-md">
                 <div className="flex flex-col">
                     <div className="font-bold">Average Wage</div>
                     <div>{companySummary?.average_wage}</div>
@@ -105,9 +119,9 @@ export const CompanyProfile = () => {
                     {companySummary?.positions_offered?.map((element)=>{
                         return <div>{element}</div>
                     })}
-
                 </div>
             </div>
+            </>}
             <div className="my-4 text-2xl font-bold">Company Records</div>
                 <div className="font-bold flex flex-row gap-4 mb-4 border-2 border-gray p-2 rounded-md justify-between w-1/2">
                     <div className="w-1/2 text-left">Position</div>
@@ -122,7 +136,7 @@ export const CompanyProfile = () => {
                         <div className="w-1/4">{element.hours}</div>
                     </div>)
                 })}
-            {!showAddWorkRecord?<button className="text-white bg-[#328336] p-2 rounded" onClick={() => setShowAddWorkRecord(!showAddWorkRecord)}>Add Work record</button>
+            {!showAddWorkRecord?<button className="btn-primary" onClick={() => setShowAddWorkRecord(!showAddWorkRecord)}>Add Work record</button>
                 :
                 <>
                 <div className="flex flex-row gap-2">
@@ -136,7 +150,7 @@ export const CompanyProfile = () => {
                     <input type="date" placeholder="start date" onChange={(e)=>{setNewWorkRecordBuffer({...newWorkRecordBuffer, start_date:new Date(e.target.value).toISOString()})}}></input>
                     <input type="date" placeholder="end date" onChange={(e)=>{setNewWorkRecordBuffer({...newWorkRecordBuffer, end_date:new Date(e.target.value).toISOString()})}}></input>    
                 </div>
-                <button onClick={createWorkRecord}>Add</button>
+                <button className="bg-blue-1" onClick={createWorkRecord}>Add</button>
 
                 </>    
         }

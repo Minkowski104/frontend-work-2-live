@@ -27,11 +27,11 @@ export const NavBar = () => {
     }, []);
 
     return (
-        <div className="bg-[#b2e05b] p-3 top-0 w-full rounded flex flex-row justify-between">
-            <Link to={"/home"} className="text-[#222222] decoration-none hover:text-[#328336]">Work 2 Live </Link>
+        <div className="bg-w2l-green p-3 top-0 w-full rounded flex flex-row justify-between">
+            <Link to={"/home"} className="text-[#222222] decoration-none hover:text-w2l-green">Work 2 Live </Link>
             {showProfileButton && 
             <div className="relative" ref={dropdownRef}>
-                <button className="text-white bg-[#328336] p-2 rounded-full" onClick={() => setUserDropDown(!userDropDown)}><BsPerson/></button>
+                <button className="text-white bg-w2l-green p-2 rounded-full" onClick={() => setUserDropDown(!userDropDown)}><BsPerson/></button>
                 {userDropDown ? <UserDropDown /> : null}
             </div>}
         </div>

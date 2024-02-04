@@ -9,7 +9,7 @@ import { CompanyProfile } from './views/company-profile';
 import { Toaster } from 'react-hot-toast';
 import { LoginUser } from './views/login';
 import { PositionProfile } from './views/position-profile';
-
+import 'react-loading-skeleton/dist/skeleton.css'
 function App() {
 
   return (

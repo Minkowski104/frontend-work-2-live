@@ -29,7 +29,7 @@ export const AddCompany = () => {
     return (
         <>
         <div className="flex flex-col items-center">
-            <div className="bg-[#b2e05b] p-3 top-0 w-full rounded">
+            <div className="bg-w2l-green p-3 top-0 w-full rounded">
                 <div className="bold text-3xl">Add Company</div>
             </div>
             <div className="flex flex-col w-2/4">

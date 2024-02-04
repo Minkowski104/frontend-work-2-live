@@ -44,9 +44,9 @@ export const HomePage = () => {
     return (
         <>
         <div className="h-full w-full flex flex-col items-center">
-            <div className="bold text-3xl bg-[#b2e05b] p-3 w-full flex flew-row justify-between">
+            <div className="bold text-3xl bg-w2l-green p-3 w-full flex flew-row justify-between">
                 <div>Home Page</div>
-                <Link to={"/addcompany"} className="float-right text-xl align-middle text-[#222222] decoration-none hover:text-[#328336]">Add Company +</Link>
+                <Link to={"/addcompany"} className="float-right text-xl align-middle text-[#222222] decoration-none hover:text-w2l-green">Add Company +</Link>
             </div>
             <input type="text" className="border-2 border-black rounded w-1/3 p-1" onChange={(e) => setSearchPhrase(e.target.value)}/>
             {comp.map((element) =>{ 

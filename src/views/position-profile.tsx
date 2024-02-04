@@ -68,7 +68,7 @@ export const PositionProfile = () => {
     return (
         <>
         <div className="flex flex-col items-center">
-            <div className="bg-[#b2e05b] p-3 top-0 w-full rounded">
+            <div className="bg-w2l-green p-3 top-0 w-full rounded">
                 <div className="bold text-3xl">{}</div>
             </div>
             <div className="flex flex-col w-2/4">
@@ -113,7 +113,7 @@ export const PositionProfile = () => {
                         <div className="w-1/4">{element.hours}</div>
                     </div>)
                 })}
-            {/* {!showAddWorkRecord?<button className="text-white bg-[#328336] p-2 rounded" onClick={() => setShowAddWorkRecord(!showAddWorkRecord)}>Add Work record</button>
+            {/* {!showAddWorkRecord?<button className="text-white bg-w2l-green p-2 rounded" onClick={() => setShowAddWorkRecord(!showAddWorkRecord)}>Add Work record</button>
                 :
                 <>
                 <div className="flex flex-row gap-2">

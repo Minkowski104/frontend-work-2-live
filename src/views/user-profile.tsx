@@ -38,7 +38,7 @@ export const ProfilePage = () => {
     return (
         <>
         <div className="flex flex-col items-center">
-            <div className="bg-[#b2e05b] p-3 top-0 w-full rounded flex flex-row justify-between">
+            <div className="bg-w2l-green p-3 top-0 w-full rounded flex flex-row justify-between">
                 <div className="bold text-3xl">My Profile</div>
                 <FaEdit className="text-3xl cursor-pointer" onClick={() => setEdit(!edit)}></FaEdit>
             </div>
