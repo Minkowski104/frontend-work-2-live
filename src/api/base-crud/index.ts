@@ -1,7 +1,9 @@
 import axios from 'axios';
 import {v4 as uuidv4} from 'uuid';
 
-const  base = 'http://127.0.0.1:8000'
+const  base = import.meta.env.VITE_APP_BACKEND_URL;
+
+
 
 
 export const executePost = async (url:string, payload:any, callback?:(data: any) => void) => {

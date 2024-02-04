@@ -18,7 +18,7 @@ function App() {
     <BrowserRouter>
       <NavBar />
       <Routes>
-          <Route path='/' index element={<HomePage />} />
+          <Route path='/home' index element={<HomePage />} />
           <Route path='/addcompany' element={<AddCompany />} />
           <Route path='/newuser' element={<NewUser />} />
           <Route path='/profile' element={<ProfilePage />} />
