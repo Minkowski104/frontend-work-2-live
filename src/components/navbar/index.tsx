@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from "react"
 import { BsPerson } from "react-icons/bs"
 import { Link, useLocation, useNavigate } from "react-router-dom"
 import toast from 'react-hot-toast';
+import Tooltip from "../tooltip";
+import { FaRegBuilding } from "react-icons/fa6";
 
 export const NavBar = () => {
 
@@ -29,6 +31,9 @@ export const NavBar = () => {
     return (
         <div className="bg-w2l-green p-3 top-0 w-full rounded flex flex-row justify-between">
             <Link to={"/home"} className="text-[#222222] decoration-none hover:text-w2l-green">Work 2 Live </Link>
+            <Tooltip text="Companies">
+                <Link to={"/home"} className="text-[#222222] decoration-none hover:text-w2l-green"><FaRegBuilding className="" size={25}/></Link>
+            </Tooltip>
             {showProfileButton && 
             <div className="relative" ref={dropdownRef}>
                 <button className="text-white bg-w2l-green p-2 rounded-full" onClick={() => setUserDropDown(!userDropDown)}><BsPerson/></button>

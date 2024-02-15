@@ -79,9 +79,6 @@ export const CompanyProfile = () => {
     return (
         <>
         <div className="flex flex-col items-center">
-            <div className="bg-w2l-green p-3 top-0 w-full rounded">
-                <div className="bold text-3xl">{}</div>
-            </div>
             <div className="flex flex-col w-2/4">
                 <div className="w-full h-full items-left p-2 m-2 flex flex-row justify-between" >
                     <div>Name </div>
